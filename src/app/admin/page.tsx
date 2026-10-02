@@ -21,6 +21,11 @@ import {
   Edit,
   Save,
   X,
+  Lightbulb,
+  MapPin,
+  MessageSquare,
+  FileText,
+  PhoneCall,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -423,8 +428,9 @@ export default function AdminPage() {
               />
             </div>
 
-            <div className="bg-blue-50 p-3.5 rounded-xl border border-blue-200 text-sm font-semibold text-blue-900">
-              💡 Kode Demo Default: <strong>ADMIN2026</strong>
+            <div className="bg-blue-50 p-3.5 rounded-xl border border-blue-200 text-sm font-semibold text-blue-900 flex items-center gap-2">
+              <Lightbulb className="w-4 h-4 text-amber-500 shrink-0" />
+              <span>Kode Demo Default: <strong>ADMIN2026</strong></span>
             </div>
 
             <Button type="submit" size="large" className="w-full text-lg" isLoading={isLoggingIn}>
@@ -497,7 +503,8 @@ export default function AdminPage() {
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-300/60'
               }`}
           >
-            <span>🚨 Live Monitor & Checkpoint</span>
+            <ShieldAlert className="w-5 h-5 stroke-[2.5]" />
+            <span>Live Monitor & Checkpoint</span>
             {activeBantuanCount > 0 && (
               <span className="px-2 py-0.5 rounded-full bg-red-500 text-white text-sm font-extrabold animate-pulse">
                 {activeBantuanCount}
@@ -511,8 +518,8 @@ export default function AdminPage() {
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-300/60'
               }`}
           >
-            <Calendar className="w-5 h-5" />
-            <span>📋 Kelola Jadwal & Hotel</span>
+            <Calendar className="w-5 h-5 stroke-[2.5]" />
+            <span>Kelola Jadwal & Hotel</span>
           </button>
         </div>
 
@@ -568,8 +575,9 @@ export default function AdminPage() {
 
               <div className="mt-4 space-y-3">
                 {bantuanList.length === 0 ? (
-                  <div className="p-6 text-center text-slate-500 text-lg">
-                    ✅ Saat ini tidak ada permintaan bantuan dari jamaah. Semua aman terkendali.
+                  <div className="p-6 text-center text-slate-500 text-lg flex items-center justify-center gap-2">
+                    <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0" />
+                    <span>Saat ini tidak ada permintaan bantuan dari jamaah. Semua aman terkendali.</span>
                   </div>
                 ) : (
                   bantuanList.map((item) => (
@@ -586,8 +594,9 @@ export default function AdminPage() {
                             {item.jamaah_nama || 'Jamaah Lansia'}
                           </span>
                           {item.prioritas === 'tinggi' && (
-                            <span className="px-2.5 py-0.5 rounded-md bg-red-100 text-red-800 text-sm font-extrabold border border-red-300">
-                              🚨 PRIORITAS TINGGI
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-red-100 text-red-800 text-sm font-extrabold border border-red-300">
+                              <AlertTriangle className="w-4 h-4 text-red-600" />
+                              PRIORITAS TINGGI
                             </span>
                           )}
                           <span
@@ -607,9 +616,10 @@ export default function AdminPage() {
                           </span>
                         </p>
 
-                        <p className="text-base text-slate-600">
-                          📍 Checkpoint Terakhir: <strong>{item.checkpoint_terakhir}</strong> | Waktu:{' '}
-                          {formatDateTime(item.timestamp)} ({formatRelativeTime(item.timestamp)})
+                        <p className="text-base text-slate-600 flex items-center gap-1.5 flex-wrap">
+                          <MapPin className="w-4 h-4 text-slate-600 shrink-0" />
+                          <span>Checkpoint Terakhir: <strong>{item.checkpoint_terakhir}</strong></span>
+                          <span>| Waktu: {formatDateTime(item.timestamp)} ({formatRelativeTime(item.timestamp)})</span>
                         </p>
                       </div>
 
@@ -656,10 +666,10 @@ export default function AdminPage() {
                     }
                     className="w-full h-14 px-4 rounded-xl border-2 border-slate-300 text-lg font-bold text-slate-900 bg-slate-50 focus:bg-white focus:border-blue-600 focus:outline-none"
                   >
-                    <option value="all">👥 Seluruh Rombongan (3 Jamaah)</option>
+                    <option value="all">Seluruh Rombongan (3 Jamaah)</option>
                     {jamaahList.map((j) => (
                       <option key={j.id} value={j.id}>
-                        👤 {j.nama} (Status saat ini: {j.status_terkini || 'check_in'})
+                        {j.nama} (Status saat ini: {j.status_terkini || 'check_in'})
                       </option>
                     ))}
                   </select>
@@ -740,7 +750,10 @@ export default function AdminPage() {
                         Paspor: {j.nomor_paspor || '-'} | Kontak Keluarga: {j.kontak_keluarga || '-'}
                       </p>
                       {j.status_catatan && (
-                        <p className="text-sm text-slate-700 italic mt-1">💬 {j.status_catatan}</p>
+                        <p className="text-sm text-slate-700 italic mt-1 flex items-center gap-1.5">
+                          <MessageSquare className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                          <span>{j.status_catatan}</span>
+                        </p>
                       )}
                     </div>
 
@@ -796,8 +809,18 @@ export default function AdminPage() {
                   className="bg-blue-50/70 p-6 rounded-2xl border-2 border-blue-200 mb-6 space-y-4"
                 >
                   <div className="flex items-center justify-between pb-2 border-b border-blue-200">
-                    <h3 className="text-xl font-bold text-blue-950">
-                      {editingItineraryId ? '✏️ Edit Jadwal Kegiatan' : '➕ Tambah Jadwal Kegiatan Baru'}
+                    <h3 className="text-xl font-bold text-blue-950 flex items-center gap-2">
+                      {editingItineraryId ? (
+                        <>
+                          <Edit className="w-5 h-5 text-blue-600" />
+                          <span>Edit Jadwal Kegiatan</span>
+                        </>
+                      ) : (
+                        <>
+                          <Plus className="w-5 h-5 text-blue-600" />
+                          <span>Tambah Jadwal Kegiatan Baru</span>
+                        </>
+                      )}
                     </h3>
                     <button
                       type="button"
@@ -904,7 +927,10 @@ export default function AdminPage() {
                         </h4>
                       </div>
                       {item.catatan && (
-                        <p className="text-base text-slate-600 mt-1">📌 {item.catatan}</p>
+                        <p className="text-base text-slate-600 mt-1 flex items-center gap-1.5">
+                          <FileText className="w-4 h-4 text-slate-500 shrink-0" />
+                          <span>{item.catatan}</span>
+                        </p>
                       )}
                     </div>
 
@@ -950,8 +976,9 @@ export default function AdminPage() {
                   className="bg-amber-50/70 p-6 rounded-2xl border-2 border-amber-300 mb-6 space-y-4"
                 >
                   <div className="flex items-center justify-between pb-2 border-b border-amber-200">
-                    <h3 className="text-xl font-bold text-amber-950">
-                      ✏️ Edit Informasi Hotel ({hotelForm.kota})
+                    <h3 className="text-xl font-bold text-amber-950 flex items-center gap-2">
+                      <Building2 className="w-5 h-5 text-amber-700" />
+                      <span>Edit Informasi Hotel ({hotelForm.kota})</span>
                     </h3>
                     <button
                       type="button"
@@ -1045,11 +1072,13 @@ export default function AdminPage() {
                       </div>
 
                       <h4 className="text-xl font-bold text-slate-900">{hotel.nama_hotel}</h4>
-                      <p className="text-base text-slate-700 leading-relaxed">
-                        📍 {hotel.alamat}
+                      <p className="text-base text-slate-700 leading-relaxed flex items-start gap-1.5">
+                        <MapPin className="w-4 h-4 text-blue-600 shrink-0 mt-1" />
+                        <span>{hotel.alamat}</span>
                       </p>
-                      <p className="text-base font-bold text-blue-700">
-                        📞 {hotel.kontak}
+                      <p className="text-base font-bold text-blue-700 flex items-center gap-1.5">
+                        <PhoneCall className="w-4 h-4 text-blue-600 shrink-0" />
+                        <span>{hotel.kontak}</span>
                       </p>
                     </div>
                   </div>

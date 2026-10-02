@@ -13,6 +13,9 @@ import {
   Users,
   CheckCircle2,
   ShieldAlert,
+  MapPin,
+  MessageSquare,
+  FileText,
 } from 'lucide-react';
 import { Navbar } from '@/components/Navbar';
 import { Button } from '@/components/ui/Button';
@@ -216,9 +219,10 @@ export default function ViewerPage() {
               variant="danger"
               size="emergency"
               onClick={() => setIsBantuanModalOpen(true)}
-              className="text-xl font-bold tracking-wide"
+              className="text-xl font-bold tracking-wide flex items-center justify-center gap-3"
             >
-              🚨 BUTUH BANTUAN SEKARANG
+              <AlertCircle className="w-7 h-7 stroke-[2.5]" />
+              <span>BUTUH BANTUAN SEKARANG</span>
             </Button>
           </div>
         )}
@@ -260,34 +264,40 @@ export default function ViewerPage() {
           </div>
         </Card>
 
-        {/* Tab Navigasi Ramah Lansia (Besar, Jelas, Kontras) */}
+        {/* Tab Navigasi Ramah Lansia (Besar, Jelas, Kontras dengan Flat Icons) */}
         <div className="grid grid-cols-3 gap-2 bg-slate-200/80 p-1.5 rounded-2xl">
           <button
             onClick={() => setActiveTab('status')}
-            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer ${activeTab === 'status'
+            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer flex items-center justify-center gap-2 ${
+              activeTab === 'status'
                 ? 'bg-blue-600 text-white shadow-md'
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-300/60'
-              }`}
+            }`}
           >
-            📍 Posisi Terkini
+            <MapPin className="w-5 h-5 stroke-[2.5]" />
+            <span>Posisi Terkini</span>
           </button>
           <button
             onClick={() => setActiveTab('jadwal')}
-            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer ${activeTab === 'jadwal'
+            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer flex items-center justify-center gap-2 ${
+              activeTab === 'jadwal'
                 ? 'bg-blue-600 text-white shadow-md'
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-300/60'
-              }`}
+            }`}
           >
-            🗓️ Jadwal Acara
+            <Calendar className="w-5 h-5 stroke-[2.5]" />
+            <span>Jadwal Acara</span>
           </button>
           <button
             onClick={() => setActiveTab('hotel')}
-            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer ${activeTab === 'hotel'
+            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer flex items-center justify-center gap-2 ${
+              activeTab === 'hotel'
                 ? 'bg-blue-600 text-white shadow-md'
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-300/60'
-              }`}
+            }`}
           >
-            🏨 Info Hotel
+            <Building2 className="w-5 h-5 stroke-[2.5]" />
+            <span>Info Hotel</span>
           </button>
         </div>
 
@@ -317,7 +327,7 @@ export default function ViewerPage() {
                   <button
                     onClick={() => fetchStatus(true)}
                     disabled={isRefreshing}
-                    className="p-2 rounded-lg hover:bg-slate-100 text-slate-600 transition-colors"
+                    className="p-2 rounded-lg hover:bg-slate-100 text-slate-600 transition-colors cursor-pointer"
                     title="Refresh status manual"
                   >
                     <RefreshCw
@@ -335,14 +345,17 @@ export default function ViewerPage() {
                 />
 
                 {statusData?.catatan_terkini && (
-                  <div className="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-lg text-slate-800">
-                    💬 <strong className="text-slate-900">Catatan Petugas:</strong>{' '}
-                    {statusData.catatan_terkini}
+                  <div className="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-lg text-slate-800 flex items-start gap-2.5">
+                    <MessageSquare className="w-5 h-5 text-blue-600 shrink-0 mt-1" />
+                    <div>
+                      <strong className="text-slate-900">Catatan Petugas:</strong>{' '}
+                      {statusData.catatan_terkini}
+                    </div>
                   </div>
                 )}
 
                 <p className="text-base text-slate-500 mt-3 flex items-center gap-1.5">
-                  <Clock className="w-4 h-4" />
+                  <Clock className="w-4 h-4 text-slate-500" />
                   <span>Waktu update: <strong>{formatDateTime(statusData?.waktu_terkini)}</strong></span>
                   <span>({formatRelativeTime(statusData?.waktu_terkini)})</span>
                 </p>
@@ -429,9 +442,10 @@ export default function ViewerPage() {
                     </div>
 
                     {item.catatan && (
-                      <p className="text-lg text-slate-700 mt-3 bg-white p-3 rounded-xl border border-slate-200">
-                        📌 {item.catatan}
-                      </p>
+                      <div className="text-lg text-slate-700 mt-3 bg-white p-3 rounded-xl border border-slate-200 flex items-start gap-2">
+                        <FileText className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
+                        <p>{item.catatan}</p>
+                      </div>
                     )}
                   </div>
                 ))}
@@ -474,9 +488,10 @@ export default function ViewerPage() {
                       {hotel.nama_hotel}
                     </h4>
 
-                    <p className="text-lg text-slate-700 leading-relaxed">
-                      📍 {hotel.alamat}
-                    </p>
+                    <div className="text-lg text-slate-700 leading-relaxed flex items-start gap-2">
+                      <MapPin className="w-5 h-5 text-blue-600 shrink-0 mt-1" />
+                      <p>{hotel.alamat}</p>
+                    </div>
 
                     <div className="pt-2">
                       <a

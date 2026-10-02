@@ -1,7 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Users, Stethoscope, FileText, HelpCircle, X, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import {
+  Users,
+  Stethoscope,
+  FileText,
+  HelpCircle,
+  X,
+  AlertTriangle,
+  CheckCircle2,
+  MapPin,
+} from 'lucide-react';
 import { Button } from './ui/Button';
 import { showSuccessAlert, showErrorAlert, showElderlyAlert } from '@/utils/sweetAlert';
 import { KategoriBantuan } from '@/repositories/bantuanRepo';
@@ -198,9 +207,10 @@ export const BantuanModal: React.FC<BantuanModalProps> = ({
               })}
             </div>
 
-            <div className="bg-slate-100 p-4 rounded-xl border border-slate-200 mt-4">
+            <div className="bg-slate-100 p-4 rounded-xl border border-slate-200 mt-4 flex items-center gap-2.5">
+              <MapPin className="w-5 h-5 text-slate-700 shrink-0" />
               <p className="text-base text-slate-700">
-                📍 Posisi Terakhir Terdata:{' '}
+                Posisi Terakhir Terdata:{' '}
                 <strong className="text-slate-900 uppercase">{checkpointTerakhir}</strong>
               </p>
             </div>
@@ -212,8 +222,10 @@ export const BantuanModal: React.FC<BantuanModalProps> = ({
                 variant="danger"
                 size="emergency"
                 isLoading={isSubmitting}
+                className="flex items-center justify-center gap-2"
               >
-                Kirim Permintaan Sekarang
+                <AlertTriangle className="w-6 h-6" />
+                <span>Kirim Permintaan Sekarang</span>
               </Button>
               <Button
                 type="button"

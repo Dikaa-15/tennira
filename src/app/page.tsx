@@ -2,7 +2,18 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { HeartHandshake, ArrowRight, Shield, Sparkles, PhoneCall, CheckCircle } from 'lucide-react';
+import {
+  HeartHandshake,
+  ArrowRight,
+  Shield,
+  Sparkles,
+  PhoneCall,
+  CheckCircle,
+  Lightbulb,
+  Eye,
+  Clock,
+  AlertTriangle,
+} from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { showErrorAlert } from '@/utils/sweetAlert';
 
@@ -67,7 +78,7 @@ export default function HomePage() {
             onClick={() => router.push('/admin')}
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 hover:text-blue-600 hover:border-blue-600 text-base font-bold transition-all bg-white cursor-pointer"
           >
-            <Shield className="w-5 h-5" />
+            <Shield className="w-5 h-5 text-blue-600" />
             <span>Portal Petugas (TL)</span>
           </button>
         </div>
@@ -112,9 +123,10 @@ export default function HomePage() {
 
             {/* Quick Demo Preset */}
             <div className="bg-blue-50/80 p-4 rounded-2xl border border-blue-200">
-              <p className="text-base font-semibold text-blue-900 mb-2">
-                💡 Kode Contoh Demo Penjurian:
-              </p>
+              <div className="flex items-center gap-2 text-blue-900 font-semibold mb-2">
+                <Lightbulb className="w-5 h-5 text-amber-500 shrink-0" />
+                <span className="text-base">Kode Contoh Demo Penjurian:</span>
+              </div>
               <button
                 type="button"
                 onClick={() => handleQuickDemo('UMR-OKT-01')}
@@ -139,22 +151,28 @@ export default function HomePage() {
 
         {/* 3 Keunggulan Ramah Lansia */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-          <div className="bg-white p-5 rounded-2xl border border-slate-200 text-center">
-            <div className="text-2xl mb-1">🔍</div>
+          <div className="bg-white p-5 rounded-2xl border border-slate-200 text-center flex flex-col items-center">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 mb-3 border border-blue-100">
+              <Eye className="w-6 h-6 stroke-[2.5]" />
+            </div>
             <h3 className="text-lg font-bold text-slate-900">Tulisan Besar & Jelas</h3>
             <p className="text-base text-slate-600 mt-1">
               Didesain khusus ramah lansia, nyaman dibaca tanpa kacamata pembesar.
             </p>
           </div>
-          <div className="bg-white p-5 rounded-2xl border border-slate-200 text-center">
-            <div className="text-2xl mb-1">⏱️</div>
+          <div className="bg-white p-5 rounded-2xl border border-slate-200 text-center flex flex-col items-center">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 mb-3 border border-emerald-100">
+              <Clock className="w-6 h-6 stroke-[2.5]" />
+            </div>
             <h3 className="text-lg font-bold text-slate-900">Update Berkala Otomatis</h3>
             <p className="text-base text-slate-600 mt-1">
               Layar memperbarui posisi rombongan otomatis setiap 10–15 detik.
             </p>
           </div>
-          <div className="bg-white p-5 rounded-2xl border border-slate-200 text-center">
-            <div className="text-2xl mb-1">🚨</div>
+          <div className="bg-white p-5 rounded-2xl border border-slate-200 text-center flex flex-col items-center">
+            <div className="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center text-red-600 mb-3 border border-red-100">
+              <AlertTriangle className="w-6 h-6 stroke-[2.5]" />
+            </div>
             <h3 className="text-lg font-bold text-slate-900">Tombol Bantuan Cepat</h3>
             <p className="text-base text-slate-600 mt-1">
               Satu kali sentuh saat terpisah rombongan atau butuh bantuan darurat.
