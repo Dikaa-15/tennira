@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     }
 
     const cookieStore = await cookies();
-    cookieStore.set('sakinah_admin_session', 'authenticated', {
+    cookieStore.set('safarku_admin_session', 'authenticated', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',

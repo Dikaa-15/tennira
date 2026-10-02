@@ -461,7 +461,7 @@ export default function AdminPage() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-slate-900 leading-tight">
-                Dashboard Tour Leader (Sakinah)
+                Dashboard Tour Leader (Safarku)
               </h1>
               <p className="text-sm font-semibold text-slate-600">
                 Petugas: <strong>Ust. Rahmat</strong>
@@ -1072,7 +1072,7 @@ export default function AdminPage() {
       {/* Footer */}
       <footer className="bg-white border-t-2 border-slate-200 py-6 px-4 text-center mt-8">
         <p className="text-base font-medium text-slate-600">
-          Dashboard Petugas Sakinah — Tour Leader Interface
+          Dashboard Petugas Safarku — Tour Leader Interface
         </p>
       </footer>
     </div>

@@ -55,7 +55,7 @@ export default function HomePage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold tracking-tight text-slate-900 leading-tight">
-                Sakinah
+                Safarku
               </h1>
               <p className="text-sm font-semibold text-blue-600">
                 Pendamping Perjalanan Umrah Ramah Lansia
@@ -65,7 +65,7 @@ export default function HomePage() {
 
           <button
             onClick={() => router.push('/admin')}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 hover:text-blue-600 hover:border-blue-600 text-base font-bold transition-all bg-white"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 hover:text-blue-600 hover:border-blue-600 text-base font-bold transition-all bg-white cursor-pointer"
           >
             <Shield className="w-5 h-5" />
             <span>Portal Petugas (TL)</span>
@@ -167,7 +167,7 @@ export default function HomePage() {
       <footer className="bg-white border-t-2 border-slate-200 py-6 px-4 text-center">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-base font-medium text-slate-600">
-            © 2026 Sakinah — Hackathon FIK FAIR 2026 (Akses untuk Semua)
+            © 2026 Safarku — Hackathon FIK FAIR 2026 (Akses untuk Semua)
           </p>
           <div className="flex items-center gap-4 text-base font-bold text-slate-700">
             <a href="tel:+6281234567801" className="flex items-center gap-1.5 hover:text-blue-600">

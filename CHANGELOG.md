@@ -37,6 +37,24 @@ Dokumen ini mencatat seluruh aktivitas perubahan, setup, keputusan arsitektur, d
 
 ## 🧭 Milestone & Checklist Fitur
 
+### [2026-10-02] — Rebranding Menjadi "Safarku" & Konfigurasi TiDB Cloud (Serverless SSL)
+- **Rebranding Aplikasi ("Safarku")**:
+  - Memperbarui seluruh penamaan aplikasi, judul halaman, metadata, navigasi, dan footer menjadi **Safarku** (Pendamping Perjalanan Umrah Ramah Lansia).
+  - Mengubah penamaan sesi cookie aman menjadi `safarku_admin_session` dan `safarku_viewer_group`.
+  - Mengubah nama project di `package.json` menjadi `safarku`.
+- **Dukungan TiDB Cloud Serverless & TLS 1.2 (`src/lib/db.ts`)**:
+  - Menambahkan konfigurasi SSL dinamis: `ssl: { minVersion: 'TLSv1.2', rejectUnauthorized: true }` saat `DB_SSL=true`.
+  - Optimasi *connection pool* untuk arsitektur Serverless Vercel (`connectionLimit: 5`).
+  - Menyesuaikan *default port* TiDB Cloud (`4000`) dan *database target* `safarku`.
+- **Skema Database & Seeding TiDB Cloud (`docs/database-schema-safarku.sql`)**:
+  - Menyediakan script DDL & DML lengkap untuk database `safarku` yang siap di-copy-paste ke SQL Editor TiDB Cloud.
+- **Update Konfigurasi `.env.example`**:
+  - Menyediakan template variabel lingkungan resmi untuk deployment Vercel dan TiDB Cloud.
+- **Verifikasi Build**:
+  - `npm run build` sukses 100% tanpa error TypeScript maupun Turbopack lint.
+
+---
+
 ### [2026-10-01] — Implementasi Penuh Repositories, API Endpoints, UI Components & Pages
 - **Repository Pattern (`src/repositories/`)**:
   - `keberangkatanRepo.ts`: Query data keberangkatan & grup dengan prepared statements.

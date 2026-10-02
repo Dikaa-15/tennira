@@ -512,7 +512,7 @@ export default function ViewerPage() {
       {/* Footer */}
       <footer className="bg-white border-t-2 border-slate-200 py-6 px-4 text-center mt-8">
         <p className="text-base font-medium text-slate-600">
-          © 2026 Sakinah — Akses untuk Semua (SDG 3, 10, 16)
+          © 2026 Safarku — Akses untuk Semua (SDG 3, 10, 16)
         </p>
       </footer>
     </div>

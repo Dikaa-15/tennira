@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     }
 
     const cookieStore = await cookies();
-    cookieStore.set('sakinah_viewer_group', keberangkatan.kode_grup, {
+    cookieStore.set('safarku_viewer_group', keberangkatan.kode_grup, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',

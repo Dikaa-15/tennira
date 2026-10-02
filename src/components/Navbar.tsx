@@ -21,7 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({ role = 'viewer', groupName, onLo
           </div>
           <div>
             <span className="text-2xl font-bold tracking-tight text-slate-900 block leading-tight">
-              Sakinah
+              Safarku
             </span>
             <span className="text-sm font-medium text-blue-600 block leading-tight">
               Pendamping Umrah Lansia

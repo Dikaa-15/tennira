@@ -2,17 +2,17 @@ import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 
-const plusJakarta = Plus_Jakarta_Sans({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-plus-jakarta',
   display: 'swap',
+  variable: '--font-plus-jakarta',
+  weight: ['400', '500', '600', '700', '800'],
 });
 
 export const metadata: Metadata = {
-  title: 'Sakinah — Pendamping Perjalanan Umrah Ramah Lansia',
+  title: 'Safarku — Pendamping Perjalanan Umrah Ramah Lansia',
   description:
-    'Sistem informasi terpadu pemantau status perjalanan dan pendamping jamaah umrah ramah lansia & keluarga.',
+    'Platform pendamping perjalanan umrah terpadu dan ramah lansia: Live journey status, pusat info perjalanan, dan tombol bantuan darurat cepat.',
 };
 
 export default function RootLayout({
@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${plusJakarta.variable} font-sans`}>
-      <body className="min-h-screen bg-slate-50 text-slate-800 antialiased font-sans flex flex-col selection:bg-blue-100 selection:text-blue-900">
+    <html lang="id" className={plusJakartaSans.variable}>
+      <body className="font-sans antialiased bg-slate-50 text-slate-800 min-h-screen">
         {children}
       </body>
     </html>
