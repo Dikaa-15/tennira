@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import {
   HeartHandshake,
   Calendar,
@@ -61,10 +61,15 @@ interface StatusData {
   }[];
 }
 
-export default function ViewerPage() {
+function ViewerContent() {
   const params = useParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const keberangkatanId = Number(params.id);
+
+  const initialTabParam = searchParams.get('tab');
+  const isViewAll = searchParams.get('view') === 'all';
+  const initialModalParam = searchParams.get('modal') === 'bantuan';
 
   const [groupInfo, setGroupInfo] = useState<any>(null);
   const [jamaahList, setJamaahList] = useState<JamaahItem[]>([]);
@@ -77,11 +82,23 @@ export default function ViewerPage() {
   const [hasActiveBantuan, setHasActiveBantuan] = useState<boolean>(false);
   const [activeBantuanData, setActiveBantuanData] = useState<any>(null);
 
-  const [isBantuanModalOpen, setIsBantuanModalOpen] = useState<boolean>(false);
-  const [activeTab, setActiveTab] = useState<'status' | 'jadwal' | 'hotel'>('status');
+  const [isBantuanModalOpen, setIsBantuanModalOpen] = useState<boolean>(initialModalParam);
+  const [activeTab, setActiveTab] = useState<'status' | 'jadwal' | 'hotel'>(
+    initialTabParam === 'jadwal' || initialTabParam === 'hotel' ? initialTabParam : 'status'
+  );
   const [isPollingActive, setIsPollingActive] = useState<boolean>(true);
   const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date());
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
+
+  // Sync tab change to URL param without hard reload
+  const handleTabChange = (tab: 'status' | 'jadwal' | 'hotel') => {
+    setActiveTab(tab);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', tab);
+      window.history.replaceState({}, '', url.toString());
+    }
+  };
 
   // 1. Fetch Master Data (Group, Jamaah, Itinerary, Hotel)
   useEffect(() => {
@@ -267,7 +284,7 @@ export default function ViewerPage() {
         {/* Tab Navigasi Ramah Lansia (Besar, Jelas, Kontras & Stack Vertikal di Mobile) */}
         <div className="grid grid-cols-3 gap-1 sm:gap-2 bg-slate-200/80 p-1 sm:p-1.5 rounded-2xl max-w-full">
           <button
-            onClick={() => setActiveTab('status')}
+            onClick={() => handleTabChange('status')}
             className={`min-h-[52px] sm:min-h-[56px] py-2 px-1 rounded-xl font-bold text-xs sm:text-lg transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 ${
               activeTab === 'status'
                 ? 'bg-blue-600 text-white shadow-md'
@@ -278,7 +295,7 @@ export default function ViewerPage() {
             <span className="text-center leading-tight">Posisi Terkini</span>
           </button>
           <button
-            onClick={() => setActiveTab('jadwal')}
+            onClick={() => handleTabChange('jadwal')}
             className={`min-h-[52px] sm:min-h-[56px] py-2 px-1 rounded-xl font-bold text-xs sm:text-lg transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 ${
               activeTab === 'jadwal'
                 ? 'bg-blue-600 text-white shadow-md'
@@ -289,7 +306,7 @@ export default function ViewerPage() {
             <span className="text-center leading-tight">Jadwal Acara</span>
           </button>
           <button
-            onClick={() => setActiveTab('hotel')}
+            onClick={() => handleTabChange('hotel')}
             className={`min-h-[52px] sm:min-h-[56px] py-2 px-1 rounded-xl font-bold text-xs sm:text-lg transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 ${
               activeTab === 'hotel'
                 ? 'bg-blue-600 text-white shadow-md'
@@ -304,7 +321,7 @@ export default function ViewerPage() {
         {/* ======================================================== */}
         {/* TAB 1: LIVE JOURNEY STATUS (FITUR 1)                     */}
         {/* ======================================================== */}
-        {activeTab === 'status' && (
+        {(activeTab === 'status' || isViewAll) && (
           <div className="space-y-4 sm:space-y-6">
             {/* Status Card Utama */}
             <Card className="border-2 border-blue-200 bg-white">
@@ -405,7 +422,7 @@ export default function ViewerPage() {
         {/* ======================================================== */}
         {/* TAB 2: JADWAL & ITINERARY (FITUR 2)                      */}
         {/* ======================================================== */}
-        {activeTab === 'jadwal' && (
+        {(activeTab === 'jadwal' || isViewAll) && (
           <div className="space-y-4">
             <Card className="bg-white">
               <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-slate-200">
@@ -457,7 +474,7 @@ export default function ViewerPage() {
         {/* ======================================================== */}
         {/* TAB 3: HOTEL & KONTAK DARURAT (FITUR 2)                  */}
         {/* ======================================================== */}
-        {activeTab === 'hotel' && (
+        {(activeTab === 'hotel' || isViewAll) && (
           <div className="space-y-4">
             <Card className="bg-white">
               <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-slate-200">
@@ -528,5 +545,13 @@ export default function ViewerPage() {
         </p>
       </footer>
     </div>
+  );
+}
+
+export default function ViewerPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate-50 flex items-center justify-center p-8 text-xl font-bold text-slate-700">Memuat data perjalanan...</div>}>
+      <ViewerContent />
+    </Suspense>
   );
 }
