@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 
@@ -15,14 +15,20 @@ export const metadata: Metadata = {
     'Platform pendamping perjalanan umrah terpadu dan ramah lansia: Live journey status, pusat info perjalanan, dan tombol bantuan darurat cepat.',
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={plusJakartaSans.variable}>
-      <body className="font-sans antialiased bg-slate-50 text-slate-800 min-h-screen">
+    <html lang="id" className={`${plusJakartaSans.variable} overflow-x-hidden`}>
+      <body className="font-sans antialiased bg-slate-50 text-slate-800 min-h-screen overflow-x-hidden w-full max-w-full">
         {children}
       </body>
     </html>

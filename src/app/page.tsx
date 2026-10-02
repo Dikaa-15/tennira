@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import {
   HeartHandshake,
   ArrowRight,
@@ -13,6 +14,7 @@ import {
   Eye,
   Clock,
   AlertTriangle,
+  Info,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { showErrorAlert } from '@/utils/sweetAlert';
@@ -56,31 +58,41 @@ export default function HomePage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 flex flex-col justify-between">
+    <main className="min-h-screen bg-slate-50 flex flex-col justify-between w-full max-w-full overflow-x-hidden">
       {/* Header */}
-      <header className="bg-white border-b-2 border-slate-200 py-4 px-6">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-md">
-              <HeartHandshake className="w-7 h-7 stroke-[2.5]" />
+      <header className="bg-white border-b-2 border-slate-200 py-3 sm:py-4 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-3 self-start sm:self-auto">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-md shrink-0">
+              <HeartHandshake className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.5]" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold tracking-tight text-slate-900 leading-tight">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-tight">
                 Safarku
               </h1>
-              <p className="text-sm font-semibold text-blue-600">
+              <p className="text-xs sm:text-sm font-semibold text-blue-600">
                 Pendamping Perjalanan Umrah Ramah Lansia
               </p>
             </div>
           </div>
 
-          <button
-            onClick={() => router.push('/admin')}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 hover:text-blue-600 hover:border-blue-600 text-base font-bold transition-all bg-white cursor-pointer"
-          >
-            <Shield className="w-5 h-5 text-blue-600" />
-            <span>Portal Petugas (TL)</span>
-          </button>
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-50 text-blue-900 hover:bg-blue-100 border border-blue-200 text-sm sm:text-base font-bold transition-all"
+            >
+              <Info className="w-4 h-4 text-blue-600 shrink-0" />
+              <span>Info Juri</span>
+            </Link>
+
+            <button
+              onClick={() => router.push('/admin')}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border-2 border-slate-300 text-slate-700 hover:text-blue-600 hover:border-blue-600 text-sm sm:text-base font-bold transition-all bg-white cursor-pointer"
+            >
+              <Shield className="w-4 h-4 text-blue-600 shrink-0" />
+              <span>Portal Petugas (TL)</span>
+            </button>
+          </div>
         </div>
       </header>
 
