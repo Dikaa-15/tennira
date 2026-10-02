@@ -248,8 +248,7 @@ export default function AdminPage() {
 
       await showSuccessAlert(
         'Status Berhasil Diperbarui!',
-        `Checkpoint telah diubah menjadi "${selectedCheckpoint}" untuk ${
-          selectedJamaahId === 'all' ? 'Seluruh Rombongan' : 'Jamaah terpilih'
+        `Checkpoint telah diubah menjadi "${selectedCheckpoint}" untuk ${selectedJamaahId === 'all' ? 'Seluruh Rombongan' : 'Jamaah terpilih'
         }. Halaman viewer keluarga otomatis terupdate.`
       );
 
@@ -493,11 +492,10 @@ export default function AdminPage() {
         <div className="grid grid-cols-2 gap-3 bg-slate-200/80 p-1.5 rounded-2xl">
           <button
             onClick={() => setAdminTab('monitor')}
-            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer flex items-center justify-center gap-2 ${
-              adminTab === 'monitor'
+            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer flex items-center justify-center gap-2 ${adminTab === 'monitor'
                 ? 'bg-blue-600 text-white shadow-md'
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-300/60'
-            }`}
+              }`}
           >
             <span>🚨 Live Monitor & Checkpoint</span>
             {activeBantuanCount > 0 && (
@@ -508,11 +506,10 @@ export default function AdminPage() {
           </button>
           <button
             onClick={() => setAdminTab('itinerary')}
-            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer flex items-center justify-center gap-2 ${
-              adminTab === 'itinerary'
+            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer flex items-center justify-center gap-2 ${adminTab === 'itinerary'
                 ? 'bg-blue-600 text-white shadow-md'
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-300/60'
-            }`}
+              }`}
           >
             <Calendar className="w-5 h-5" />
             <span>📋 Kelola Jadwal & Hotel</span>
@@ -526,18 +523,16 @@ export default function AdminPage() {
           <div className="space-y-6">
             {/* SECTION: PERMINTAAN BANTUAN DARURAT */}
             <Card
-              className={`border-2 ${
-                activeBantuanCount > 0 ? 'border-red-400 bg-red-50/40' : 'border-slate-200 bg-white'
-              }`}
+              className={`border-2 ${activeBantuanCount > 0 ? 'border-red-400 bg-red-50/40' : 'border-slate-200 bg-white'
+                }`}
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
                 <div className="flex items-center gap-3">
                   <div
-                    className={`p-2.5 rounded-2xl ${
-                      activeBantuanCount > 0
+                    className={`p-2.5 rounded-2xl ${activeBantuanCount > 0
                         ? 'bg-red-500 text-white animate-pulse'
                         : 'bg-slate-100 text-slate-700'
-                    }`}
+                      }`}
                   >
                     <ShieldAlert className="w-7 h-7" />
                   </div>
@@ -580,11 +575,10 @@ export default function AdminPage() {
                   bantuanList.map((item) => (
                     <div
                       key={item.id}
-                      className={`p-4 sm:p-5 rounded-2xl border-2 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
-                        item.status === 'baru'
+                      className={`p-4 sm:p-5 rounded-2xl border-2 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${item.status === 'baru'
                           ? 'border-red-400 bg-white shadow-sm'
                           : 'border-slate-200 bg-slate-50 opacity-75'
-                      }`}
+                        }`}
                     >
                       <div className="space-y-1.5">
                         <div className="flex items-center gap-2 flex-wrap">
@@ -597,11 +591,10 @@ export default function AdminPage() {
                             </span>
                           )}
                           <span
-                            className={`px-2.5 py-0.5 rounded-md text-sm font-bold ${
-                              item.status === 'baru'
+                            className={`px-2.5 py-0.5 rounded-md text-sm font-bold ${item.status === 'baru'
                                 ? 'bg-amber-100 text-amber-900 border border-amber-300'
                                 : 'bg-green-100 text-green-900 border border-green-300'
-                            }`}
+                              }`}
                           >
                             {item.status === 'baru' ? 'Menunggu Tindakan' : 'Sudah Ditangani'}
                           </span>
@@ -686,16 +679,14 @@ export default function AdminPage() {
                           key={cp.id}
                           type="button"
                           onClick={() => setSelectedCheckpoint(cp.id)}
-                          className={`flex items-center gap-3 p-4 rounded-xl border-2 text-left font-bold text-lg transition-all cursor-pointer ${
-                            isSelected
+                          className={`flex items-center gap-3 p-4 rounded-xl border-2 text-left font-bold text-lg transition-all cursor-pointer ${isSelected
                               ? 'border-blue-600 bg-blue-50 text-blue-900 shadow-xs'
                               : 'border-slate-200 bg-white hover:border-slate-300 text-slate-800'
-                          }`}
+                            }`}
                         >
                           <Icon
-                            className={`w-6 h-6 shrink-0 ${
-                              isSelected ? 'text-blue-600' : 'text-slate-600'
-                            }`}
+                            className={`w-6 h-6 shrink-0 ${isSelected ? 'text-blue-600' : 'text-slate-600'
+                              }`}
                           />
                           <span>{cp.label}</span>
                         </button>

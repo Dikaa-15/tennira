@@ -69,7 +69,7 @@ export default function ViewerPage() {
   const [statusData, setStatusData] = useState<StatusData | null>(null);
   const [itineraryList, setItineraryList] = useState<ItineraryItem[]>([]);
   const [hotelList, setHotelList] = useState<HotelItem[]>([]);
-  
+
   // Active Bantuan Request State
   const [hasActiveBantuan, setHasActiveBantuan] = useState<boolean>(false);
   const [activeBantuanData, setActiveBantuanData] = useState<any>(null);
@@ -264,31 +264,28 @@ export default function ViewerPage() {
         <div className="grid grid-cols-3 gap-2 bg-slate-200/80 p-1.5 rounded-2xl">
           <button
             onClick={() => setActiveTab('status')}
-            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer ${
-              activeTab === 'status'
+            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer ${activeTab === 'status'
                 ? 'bg-blue-600 text-white shadow-md'
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-300/60'
-            }`}
+              }`}
           >
             📍 Posisi Terkini
           </button>
           <button
             onClick={() => setActiveTab('jadwal')}
-            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer ${
-              activeTab === 'jadwal'
+            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer ${activeTab === 'jadwal'
                 ? 'bg-blue-600 text-white shadow-md'
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-300/60'
-            }`}
+              }`}
           >
             🗓️ Jadwal Acara
           </button>
           <button
             onClick={() => setActiveTab('hotel')}
-            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer ${
-              activeTab === 'hotel'
+            className={`h-14 rounded-xl font-bold text-lg sm:text-xl transition-all cursor-pointer ${activeTab === 'hotel'
                 ? 'bg-blue-600 text-white shadow-md'
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-300/60'
-            }`}
+              }`}
           >
             🏨 Info Hotel
           </button>
